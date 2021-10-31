@@ -12,26 +12,41 @@
 	<body>
 		<main>
 			<h1>Products & Categories</h1>
-			<table>
-				<thead>
-					<tr>
-						<th> Product Name </th>
-						<th> Category Name </th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="element" items="${productCategoryList}">
-					<tr>
-						<td><a href="/products/${ element.product_id }">${element.name}</a></td>
-						<td><a href="/categories/${ element.category_id }">${element.name}</a></td>				
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
 			<div class="div">
 				<a class="links" href="/products/new">New Product </a>
 				<a class="links" href="/categories/new"> New Category</a>
 			</div>
+			<table>
+				<thead>
+					<tr>
+						<th> Product Name </th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr>
+						<c:forEach var="element" items="${productList}">
+							<td><a href="/products/${ element.id }">${element.name}</a></td>
+						</c:forEach>			
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<tr>
+						<th> Category Name </th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr>
+
+						<c:forEach var="element" items="${categoryList}">
+							<td><a href="/categories/${ element.id }">${element.name}</a></td>	
+						</c:forEach>			
+					</tr>
+				</tbody>
+			</table>
 		</main>
 	</body>
 </html>

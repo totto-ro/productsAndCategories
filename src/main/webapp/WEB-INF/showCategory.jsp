@@ -11,16 +11,13 @@
 	</head>
 	<body>
 		<main>
-			<nav>
-				<a href="/">Dashboard</a>
-			</nav>
 			<section class="leftSide">
-            <h1>Title: {{categories.name}}</h1>
+            <h1>Category: <c:out value="${category.name}"/></h1>
             <div class="tableDiv">
                 <div>
                     <ul>
                         <li><h2>Products:</h2></li>
-                        <c:forEach items="${ product }" var="element">
+                        <c:forEach items="${ productList }" var="element">
                         <li>${ element.name }</li>
                         </c:forEach>
                     </ul>
@@ -29,16 +26,15 @@
             <a class="homelink" href="/">Home</a>
         </section>
         <section class="rightSide">
-            <form:form action="/ninjas/new" method="POST" modelAttribute="ninja">
-                <h1>Add a Product to: {{categories.name}} </h1>
+           <form:form action="/categories/new" method="POST" modelAttribute="categories_products">
+           <form:input type="hidden" path="name" value="${ category.id }"/>
                 <div class="inputLines">
-                    
-                    <form:label path="product"><h1>Add Product: </h1></form:label>
-			        <form:errors path="product"/>
-			        <form:select path="product">
+                    <form:label path="name"><h1>Add Product: </h1></form:label>
+			        <form:errors path="name"/>
+			        <form:select path="name">
 			        <form:option value=""> -- Select Product -- </form:option>
-			        <c:forEach items="${ product }" var="element">
-			        	<form:option value="${ element.getId() }">${ element.getName() }</form:option>
+			        <c:forEach items="${ notInCategories }" var="element">
+			        	<form:option value="${ element.id }">${ element.name }</form:option>
 			        </c:forEach>
 			        </form:select>
 			        

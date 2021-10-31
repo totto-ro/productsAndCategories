@@ -1,6 +1,7 @@
 package com.codingdojo.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.Repository;
 
@@ -17,4 +18,6 @@ public interface CategoryRepository extends Repository<Category, Long>{
 	List<Category> findByProductsNotContains(Product product);
 	
 	Category save( Category category );
+	
+	Optional<Category> findById( Long id );
 }

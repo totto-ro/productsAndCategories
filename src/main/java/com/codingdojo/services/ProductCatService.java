@@ -1,12 +1,16 @@
 package com.codingdojo.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 import com.codingdojo.models.Category;
 import com.codingdojo.models.Product;
 import com.codingdojo.repositories.CategoryRepository;
 import com.codingdojo.repositories.ProductRepository;
 
+@Service
 public class ProductCatService {
 
 	private final ProductRepository productRepository;
@@ -40,13 +44,46 @@ public class ProductCatService {
 	
 	//Retrieve product not paired with category	
 	public List<Product> getProductsNotInCategory(Category category) {
-		return productRepository.findByCategoriesNotContains(category);
+		return productRepository.findByCategoriesNotContains( category );
 	}	
 	
 	//Retrieve category with product not associated with (not paired with)
-	public List<Category> getCategoriesNotInProduct(Product product) {
-		return categoryRepository.findByProductsNotContains(product);
+	public List<Category> getCategoriesNotInProduct( Product product ) {
+		return categoryRepository.findByProductsNotContains( product );
 	}
+	
+	//Retrieve product not paired with category	
+		public List<Product> getProductsInCategory(Category category) {
+			return productRepository.findAllByCategories( category );
+		}	
+		
+	//Retrieve category with product not associated with (not paired with)
+	public List<Category> getCategoriesInProduct( Product product ) {
+		return categoryRepository.findAllByProducts( product );
+	}
+	
+	
+	//Retrieve product by Id
+	public Product getProductById( Long id ) {
+		Optional<Product> optionalProduct = productRepository.findById( id );
+		if( optionalProduct.isPresent() ) {
+			return optionalProduct.get();
+		}
+		else {
+			return null;
+		}
+	}
+	
+	//Retrieve product by Id
+		public Category getCategoryById( Long id ) {
+			Optional<Category> optionalCategory = categoryRepository.findById( id );
+			if( optionalCategory.isPresent() ) {
+				return optionalCategory.get();
+			}
+			else {
+				return null;
+			}
+		}
 	
 	
 }

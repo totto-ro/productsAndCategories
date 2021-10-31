@@ -1,0 +1,16 @@
+<form:form action="/categories/new" method="POST" modelAttribute="category">
+                <div class="inputLines">
+                    <form:label path="product"><h1>Add Product: </h1></form:label>
+			        <form:errors path="product"/>
+			        <form:select path="product">
+			        <form:option value=""> -- Select Product -- </form:option>
+			        <c:forEach items="${ notInCategories }" var="element">
+			        	<form:option value="${ element.getId() }">${ element.getName() }</form:option>
+			        </c:forEach>
+			        </form:select>
+			        
+                </div>
+                <button type="submit">
+                    Add
+                </button>
+            </form:form> 
