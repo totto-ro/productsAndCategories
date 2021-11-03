@@ -6,8 +6,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Product Info</title>
-		<link rel="stylesheet" type="text/css" href="./css/product_category.css">
+		<title>Category Info</title>
+		<link rel="stylesheet" type="text/css" href="/css/product_category.css">
 	</head>
 	<body>
 		<main>
@@ -26,18 +26,16 @@
             <a class="homelink" href="/">Home</a>
         </section>
         <section class="rightSide">
-           <form:form action="/categories/new" method="POST" modelAttribute="categories_products">
-           <form:input type="hidden" path="name" value="${ category.id }"/>
+           <form:form action="/categories/${category.id}" method="POST">
+           <input type="hidden" name="_method" value="put">
                 <div class="inputLines">
-                    <form:label path="name"><h1>Add Product: </h1></form:label>
-			        <form:errors path="name"/>
-			        <form:select path="name">
-			        <form:option value=""> -- Select Product -- </form:option>
+                    <label for="name">Add Product:</label>
+			        <select class="select" name="id" id="id">
+			        <option value=""> -- Select Product -- </option>
 			        <c:forEach items="${ notInCategories }" var="element">
-			        	<form:option value="${ element.id }">${ element.name }</form:option>
+			        	<option class="option" value="${ element.id }">${ element.name }</option>
 			        </c:forEach>
-			        </form:select>
-			        
+			        </select>
                 </div>
                 <button type="submit">
                     Add

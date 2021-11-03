@@ -32,15 +32,29 @@ public class ProductCatService {
 		return categoryRepository.findAll();
 	}
 	
+	//Retrieve specific category by name
+	public List<Category> getCategory( String Name ) {
+		return categoryRepository.findByName( Name );
+	}
+	
 	//Create product
 	public Product createProduct( Product product ) {
 		return productRepository.save( product );
 	}
 	
-	//Create product
-		public Category createCategory( Category category ) {
-			return categoryRepository.save( category );
-		}
+	//Create category
+	public Category createCategory( Category category ) {
+		return categoryRepository.save( category );
+	}
+	
+	//Update category
+	public Category saveCategory( Category category ) {
+		return categoryRepository.save( category );
+	}
+	
+	public Product saveProduct( Product product ) {
+		return productRepository.save( product );
+	}
 	
 	//Retrieve product not paired with category	
 	public List<Product> getProductsNotInCategory(Category category) {
@@ -86,4 +100,5 @@ public class ProductCatService {
 		}
 	
 	
+		
 }
